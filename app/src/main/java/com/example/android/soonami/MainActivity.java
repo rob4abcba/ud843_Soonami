@@ -174,8 +174,12 @@ public class MainActivity extends AppCompatActivity {
                 urlConnection.connect();
 
                 // RL: Next receive the response and make sense out of it.
+                // If the request was successful (i.e. response code 200),
+                // then read the input stream and parse the response.
+                if (urlConnection.getResponseCode() == 200) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
+                }
             } catch (IOException e) {
                 // TODO: Handle the exception
             } finally {
